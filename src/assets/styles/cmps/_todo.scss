@@ -1,0 +1,45 @@
+.todo-container {
+    display: flex;
+    
+
+    .todo-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       flex-grow: 1; 
+       div {
+           transition: 0.08s;
+           
+       }
+       small {
+           color: #666;
+       }
+
+       .todo-done,
+       .todo-undone {
+           font-size: 1.125rem;
+       }
+    }
+}
+
+.list-container {
+    padding: 0.5rem;
+}
+
+.progress-container {
+    margin-bottom: 0.5rem;
+}
+
+.add-todo-container {
+    padding: 0.5rem;
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.todo-done {
+    color: #666;
+    text-decoration: line-through;
+}

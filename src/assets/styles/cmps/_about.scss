@@ -1,0 +1,23 @@
+.about-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+
+
+    h2 {
+        text-align: center;
+        flex-grow: 1;
+    }
+}
+
+.about-main {
+    padding: 1rem 0rem;
+    h3 {
+        text-align: center;
+    }
+}

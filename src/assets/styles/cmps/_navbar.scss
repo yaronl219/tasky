@@ -1,0 +1,17 @@
+.navbar {
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1201 !important;
+    padding: 0 0.5rem;
+
+    h2 {
+        flex-grow: 1;
+    }
+
+    button {
+        color: white;
+        font-weight: 700;
+    }
+}
+

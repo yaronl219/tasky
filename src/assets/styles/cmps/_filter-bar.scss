@@ -1,0 +1,11 @@
+.filter-toggles {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    
+
+    .search-container {
+        flex-grow: 1;
+        padding-right: 0.5rem;
+    }
+}
