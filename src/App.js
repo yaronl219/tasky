@@ -10,6 +10,8 @@ import { Navbar } from './cmps/Navbar';
 import './assets/styles/global.scss'
 import { CircularProgress, Dialog } from '@material-ui/core';
 import { About } from './cmps/About';
+import { Login } from './cmps/Login';
+import { userService } from './services/userService';
 
 function App() {
 
@@ -17,10 +19,12 @@ function App() {
 
   const { todoStore } = store
   const { actionStore } = store
+  const { userStore } = store
 
   const [isDrawerOpen, setDrawerOpen] = useState(false)
   const [isAboutOpen, setAboutOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoginScreenOpen, setLoginScreenOpen] = useState(false)
 
   function toggleDrawer() {
     setDrawerOpen(!isDrawerOpen)
@@ -28,6 +32,10 @@ function App() {
 
   function toggleAbout() {
     setAboutOpen(!isAboutOpen)
+  }
+
+  function toggleLoginScreen() {
+    setLoginScreenOpen(!isLoginScreenOpen)
   }
 
   async function onDragEnd(e) {
@@ -44,8 +52,14 @@ function App() {
     setIsLoaded(true)
   }
 
+  function checkIfUserLoggedIn() {
+    // for remember me
+    if (userService.getLoggedInStatus()) userStore.setLoginLocally()
+  }
+
   useEffect(() => {
     onLoad()
+    checkIfUserLoggedIn()
   }, [])
   
 
@@ -53,7 +67,7 @@ function App() {
   return (
 
     <div className="App">
-      <Navbar toggleDrawer={toggleDrawer} toggleAbout={toggleAbout} />
+      <Navbar toggleDrawer={toggleDrawer} toggleAbout={toggleAbout} toggleLogin={toggleLoginScreen} />
       {(isLoaded) ? (<React.Fragment >
         <main>
           <DragDropContext onDragEnd={onDragEnd}>
@@ -66,6 +80,9 @@ function App() {
         </aside>
         <Dialog open={isAboutOpen} onBackdropClick={toggleAbout} onClose={toggleAbout}>
           <About toggleAbout={toggleAbout} />
+        </Dialog>
+        <Dialog open={isLoginScreenOpen} onBackdropClick={toggleLoginScreen} onClose={toggleLoginScreen}>
+          <Login toggleLogin={toggleLoginScreen} />
         </Dialog>
       </React.Fragment>) : <CircularProgress />
       }

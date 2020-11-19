@@ -13,20 +13,24 @@ export function ActionBar({ isOpen }) {
             <div className="action-bar">
                 <h3>History</h3>
                 <Divider />
-                <ul>
+                {(actionStore.actions.length) ? (
 
-
-                    {actionStore.actions.map((action, idx) =>
-                        <React.Fragment key={idx}>
-                            <ListItem >
-                                <div className="action-container">
-                                    <ListItemText primary={action.title} secondary={utilService.parseTimestamp(action.date)} />
-                                </div>
-                            </ListItem>
-                            <Divider />
-                        </React.Fragment>
-                    )}
-                </ul>
+                    <ul>
+                        {actionStore.actions.map((action, idx) =>
+                            <React.Fragment key={idx}>
+                                <ListItem >
+                                    <div className="action-container">
+                                        <ListItemText primary={action.title} secondary={utilService.parseTimestamp(action.date)} />
+                                    </div>
+                                </ListItem>
+                                <Divider />
+                            </React.Fragment>
+                        )}
+                    </ul>
+                ) : <div className="empty-state">
+                    <h3>Looks like you still havent done anything!</h3>
+                    <p>Start moving things around... this will be populated</p>
+                    </div>}
             </div>
         </Drawer>
     )

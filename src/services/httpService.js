@@ -7,7 +7,7 @@ export const httpService = {
 
 const baseUrl = process.env.NODE_ENV === 'production'
     ? '/api'
-    : '//localhost:3030'
+    : '//localhost:3030/api'
 
 async function get(url) {
     try {
@@ -28,7 +28,8 @@ async function post(url,dataToPost) {
             },
             body: JSON.stringify(dataToPost)
         })
-        const data = await res.json()
+        const data = await res.text()
+        
         return data
     } catch (err) {
         console.log(err)
