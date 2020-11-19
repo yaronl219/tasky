@@ -5,11 +5,12 @@ export function createUserStore() {
     return {
         isLoggedIn: false,
         async login(username, password) {
-            await userService.login(username, password)
+            const user = await userService.login(username, password)
+            if (!user) return
             runInAction(() => {
                 this.isLoggedIn = true
             })
-
+            return user
         },
         async signup(username, password) {
             await userService.signup(username, password)

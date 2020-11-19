@@ -16,23 +16,25 @@ function setUser(userId) {
     storageService.saveToStorage('user', userId)
 }
 
-async function login(username,password) {
+async function login(username, password) {
     try {
-        let user = await httpService.post('auth/login',{username,password})
-        user = JSON.parse(user)
-        if (!user) return 'Error logging in'
-        setUser(user.collectionId)
+        let res = await httpService.post('auth/login', { username, password })
+        res = JSON.parse(res)
+        if (res.error) return
+        setUser(res.collectionId)
         _setLoginStatus(true)
-        return
+        return res
     } catch (err) {
         console.log(err)
     }
 }
 
-async function signup(username,password) {
+async function signup(username, password) {
     let collectionId = await getUser()
     try {
-        await httpService.post('auth/signup',{username,password,collectionId})
+        const res = await httpService.post('auth/signup', { username, password, collectionId })
+        if (res.error) return
+
         _setLoginStatus(true)
     } catch (err) {
         console.log(err)
@@ -68,6 +70,6 @@ async function _createUser() {
 
 
 function _setLoginStatus(isLoggedIn) {
-    storageService.saveToStorage('isRegisteredUser',isLoggedIn)
+    storageService.saveToStorage('isRegisteredUser', isLoggedIn)
 }
 

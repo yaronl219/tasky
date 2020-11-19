@@ -12,10 +12,13 @@ export function Login({ toggleLogin }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const [failedLogin, setFailedLogin] = useState(false)
+
     async function onHandleSubmit() {
         if (!username || !password) return
         if (isLogin) {
-            await userStore.login(username, password)
+            const res = await userStore.login(username, password)
+            if (!res) return setFailedLogin(true)
         } else {
             await userStore.signup(username, password)
         }
@@ -24,6 +27,7 @@ export function Login({ toggleLogin }) {
         toggleLogin()
     }
 
+    
     return (
         <Paper >
             <div className="login-container">
@@ -39,6 +43,7 @@ export function Login({ toggleLogin }) {
                 <form onSubmit={onHandleSubmit}>
                     <TextField label="Username" required value={username} onChange={(ev) => setUsername(ev.target.value)} />
                     <TextField label="Password" required type="password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+                    {(failedLogin) ? <small>Username or password incorrect</small> : <React.Fragment />}
                     <Button onClick={onHandleSubmit}>{(isLogin) ? 'Login' : 'Signup'}</Button>
                 </form>
                 <div className="switch-signup-login">
