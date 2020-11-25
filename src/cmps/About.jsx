@@ -25,6 +25,8 @@ export function About({ toggleAbout }) {
                         <li>Node.js</li>
                         <li>MongoDB</li>
                     </ul>
+                    <p>The random task generator was built with tasks from <a href="https://fullylived.com/bucket-list-ideas/">Fully Lived</a>.</p>
+                    <p>Check out his website if you're interested in this sort of thing.</p>
                 </div>
             </div>
         </Paper>

@@ -9,7 +9,7 @@ export function Filters({ isFiltered, onSetNameFilter, onFilterDone }) {
                     <TextField fullWidth id="standard-basic" label="Filter by name" onChange={(ev) => onSetNameFilter(ev.target.value)} />
                 </div>
                 <div>
-                    <InputLabel  id="filter-done">Completed Status</InputLabel>
+                    <InputLabel id="filter-done">Completed Status</InputLabel>
                     <Select
                         labelId="filter-done"
                         id="filter-done"

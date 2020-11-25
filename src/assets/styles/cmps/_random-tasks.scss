@@ -1,0 +1,54 @@
+.random-task-btn-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.random-tasks-container {
+    padding: 1rem 2rem;
+    min-height: 25rem;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .btn-container {
+        margin-top: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.random-tasks-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.random-tasks-header {
+    display: flex;
+    align-items: center;
+    h2 {
+        text-align: center;
+        flex-grow: 1;
+    }
+    button {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+.random-task-container {
+    // min-height: 1.75rem;
+    min-width: 12rem;
+    display: flex;
+    align-items: center;
+    svg {
+        cursor: pointer;
+    }
+    .todo-title {
+        margin-left: 0.25rem;
+    }
+}

@@ -10,6 +10,7 @@ const baseUrl = process.env.NODE_ENV === 'production'
     : '//localhost:3030/api'
 
 async function get(url) {
+    
     try {
         const res = await fetch(`${baseUrl}/${url}`)
         const data = await res.json()

@@ -6,6 +6,7 @@ import { Droppable } from 'react-beautiful-dnd'
 import { LinearProgress } from '@material-ui/core'
 import { Filters } from './Filters';
 import { EmptyState } from './EmptyState';
+import { RandomTasks } from './RandomTasks';
 
 
 export function TodosList(props) {

@@ -1,6 +1,7 @@
 import { actionService } from "./actionService"
 import { httpService } from "./httpService"
 import { userService } from "./userService"
+import { utilService } from "./utils-service"
 
 export const todoService = {
     addTodo,
@@ -8,7 +9,30 @@ export const todoService = {
     toggleIsDone,
     removeTodo,
     changeOrder,
-    renameTodo
+    renameTodo,
+    getRandomTasks,
+    addMultipleTodos
+}
+
+async function getRandomTasks(amount) {
+    const todos = await httpService.get(`todos/random?amount=${amount}`)
+    return todos
+}
+
+async function addMultipleTodos(todos) {
+    const newTodos = todos.map(todo => {
+        return {
+            title: todo.text,
+            id: utilService.makeId(8),
+            completedAt: null
+        }
+    })
+
+    const { userId, userTodos } = await _loadTodos()
+    userTodos.todos = userTodos.todos.concat(newTodos)
+
+    await actionService.addAction(`Added random tasks`,userTodos,userId)
+    return
 }
 
 async function addTodo(todo) {
